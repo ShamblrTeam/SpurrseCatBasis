@@ -7,10 +7,10 @@ import numpy as np
 
 # fill this in first
 tumblr = pytumblr.TumblrRestClient(
-	'hhjkXZRaxX26lPvbrFbZIUcqSRQEIUm1kQIkLBTjr5XIJ9gjHk',
-	'ieQkCCa7MfX2dEWIjzuwpbGj1YJYFKzJheteSHNzCG3reEGjCa',
-	'dyVCvcKlyYAXmH20imANlopWr8tteomfLG3sw3MnWwpLjIpNuC',
-	'e0LjIFQTyoHOosImPxjgZsr65gXRJB5fmeCcXjLghmg22XFLOU'
+	'',
+	'',
+	'',
+	''
 )
 
 def resize(image, size):
