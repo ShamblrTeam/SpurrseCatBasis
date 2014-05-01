@@ -1,7 +1,7 @@
 import os
 import numpy as np
 from skimage import io
-import sklearn.decomposition as dec
+from sklearn.decomposition import SparsePCA
 import glob
 import re
 from random import shuffle
@@ -33,18 +33,21 @@ for n in ns:
 
 		tic = time.clock()
 		print("starting learning...")
-		dl = dec.DictionaryLearning(n_components=n,max_iter=100)
-		x = dl.fit_transform(images,subject)
+		pca = SparsePCA(n_components=n,max_iter=1000)
+		x = pca.fit_transform(images,subject)
 		print("learning done...")
 		toc = time.clock()
+		print(x)
 
 		out = np.zeros(40000)
-		print("starting trtansform...")
+		print("starting transform...")
 		for i in range(40000):
 			for j in range(n):
+				#out[i] += (x[i,j])
 				out[i] += (images[i,j] * x[i,j])
 
 		out.shape = (200,200)
+		print(out)
 		name = re.match("people/([a-z]*)_small.jpg",filename).group(1)
-		io.imsave("cat_{0}_{1}.jpg".format(n,name),out)
+		io.imsave("pca/pca_cat_{0}_{1}.jpg".format(n,name),out)
 		print(n,name,toc-tic)
